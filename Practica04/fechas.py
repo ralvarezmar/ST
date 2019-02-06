@@ -1,0 +1,129 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+from pytz import timezone
+from datetime import datetime
+import datetime, pytz
+import argparse
+import time
+import calendar
+import json
+import xml.etree.cElementTree as ET
+
+dt=datetime.datetime.now()
+lista=[]	
+
+def sumar_hora(fecha_entera):
+	if len(fecha_entera)>2:
+		dt=fecha_entera[1]+" "+fecha_entera[2]
+		dt=datetime.datetime.strptime(dt,"%Y-%m-%d %H:%M:%S")
+	elif len(fecha_entera)==2:
+		dt=datetime.datetime.fromtimestamp(float(fecha_entera[1]))
+	return dt
+
+def mostrar_salida(dt,numero,args):
+	if args.json:
+		elemento= json.dumps({str(numero[0]):str(dt)})
+		if args.timezone=="epoch":
+			elemento= json.dumps({str(numero[0]):float(dt)})
+		lista.append(elemento)
+	elif args.ascii:
+		print numero[0], dt
+	elif not args.ascii and not args.json:
+		global root
+		if int(numero[0])==1:
+			root = ET.Element(u"instants")
+			root.attrib={u"city":unicode(args.timezone)}
+		if int(numero[0])>=1 and int(numero[0])<=40:
+			elemento=ET.SubElement(root, u"instant")
+			atributos={u"date":unicode(dt),u"ordinal":unicode(numero[0])}
+			elemento.attrib=atributos
+		if int(numero[0])==40:
+			print ET.tostring(root, encoding="utf-8", method="xml")
+
+def main():
+	usage = "%prog [opciones] origen destino"
+	parser= argparse.ArgumentParser(description="Short sample app")
+	parser.add_argument("-t" , "--timezone", action="store", dest="timezone", help="-t [lugar] para mostrar la hora de [lugar]") 
+	parser.add_argument("-j" , "--json", action="store_true", dest="json", help="Muestra la salida en formato json")
+	parser.add_argument("-a" , "--ascii", action="store_true", dest="ascii", help="Muestra la salida en texto plano")
+	args = parser.parse_args()
+
+	fichero=open("fechas.txt","r")
+	fmt = "%Y-%m-%d %H:%M:%S%z"
+	if args.timezone:
+		print "------------", args.timezone, "-------------"
+	for linea in fichero:
+		try:
+			linea=linea.replace(",","")
+			fecha_hora=linea[:-1].split(" ")
+				
+			if int(fecha_hora[0])>0 and int(fecha_hora[0])<99:				
+				if len(fecha_hora)>2:
+					if fecha_hora[3]=="Madrid":				
+						zona=timezone('Europe/Madrid')
+						dt=sumar_hora(fecha_hora)				
+						dt=zona.localize(dt)
+					elif fecha_hora[3]=="Londres":	
+						zona=timezone('Europe/London')
+						dt=sumar_hora(fecha_hora)				
+						dt=zona.localize(dt)
+					elif fecha_hora[3]=="Tokio":	
+						zona=timezone('Asia/Tokyo')
+						dt=sumar_hora(fecha_hora)				
+						dt=zona.localize(dt)
+					elif fecha_hora[3]=="New_York":	
+						dt=sumar_hora(fecha_hora)
+						zona=timezone('America/New_York')								
+						dt=zona.localize(dt)
+					elif fecha_hora[3]=="Moscu":	
+						zona=timezone('Europe/Moscow')
+						dt=sumar_hora(fecha_hora)				
+						dt=zona.localize(dt)
+					elif fecha_hora[3]=="UTC":
+						zona=pytz.utc
+						dt=sumar_hora(fecha_hora)				
+						dt=zona.localize(dt)
+				else:
+					dt=sumar_hora(fecha_hora)
+					dt=pytz.utc.localize(dt)
+	
+				if args.timezone=="madrid":
+					dt = dt.astimezone(pytz.timezone('Europe/Madrid'))
+					mostrar_salida(dt,fecha_hora,args)
+				elif args.timezone=="epoch":
+					dt = time.mktime(dt.timetuple())
+					mostrar_salida(dt,fecha_hora,args)
+				elif args.timezone=="utc":
+					dt = dt.astimezone(pytz.timezone('UTC'))
+					mostrar_salida(dt,fecha_hora,args)
+				elif args.timezone=="londres":
+					dt = dt.astimezone(pytz.timezone('Europe/London'))
+					mostrar_salida(dt,fecha_hora,args)
+				elif args.timezone=="tokio":			
+					dt = dt.astimezone(pytz.timezone('Asia/Tokyo'))	
+					mostrar_salida(dt,fecha_hora,args)
+				elif args.timezone=="moscu":
+					dt = dt.astimezone(pytz.timezone('Europe/Moscow'))				
+					mostrar_salida(dt,fecha_hora,args)
+				elif args.timezone=="new_york":
+					dt = dt.astimezone(pytz.timezone('America/New_York'))
+					mostrar_salida(dt,fecha_hora,args)
+		except ValueError:
+			print "Hay una linea con formato incorrecto"
+			raise SystemExit
+	if args.json:
+		print lista
+	#elif not args.json and not args.ascii:
+	#	print ET.tostring(root, encoding="utf-8", method="xml")
+if __name__ == "__main__":
+	main()		
+			
+
+			
+					
+
+
+
+				
+				

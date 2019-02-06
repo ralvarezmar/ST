@@ -1,0 +1,6 @@
+
+{ "nombre":"Juan", "apellido":"Perez"}
+
+{ "v1":true, "v2":null, "v3":false}
+
+{ "nombre":"Pepe", "numeros":[1,2,3]}

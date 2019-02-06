@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<coches>
+	<Marca>
+		Opel
+		<Modelo>
+			Corsa		
+			<Matricula>
+				8956BZF
+			</Matricula>
+		</Modelo>		
+	</Marca>
+	<Marca>
+		Kia
+		<Modelo>
+			Ceed		
+			<Matricula>
+				1234RTY
+			</Matricula>
+		</Modelo>		
+	</Marca>
+	<Marca>
+		Ford
+		<Modelo>
+			Mondeo		
+			<Matricula>
+				5678TYP
+			</Matricula>
+		</Modelo>		
+	</Marca>
+</coches>
+	
+	

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<discoteca>
+	<Discoteca autor="Joaquin Sabina">
+		<autor Disco="19 días y 500 noches">
+			<Disco Cancion=" Cerrado por derribo">
+				<Cancion Duracion= "4:37"/>
+			</Disco>
+			<Disco Cancion="Como ce digo una co te digo la o">
+				<Cancion Duracion="8:41"/>
+			</Disco>
+			<Disco Cancion="Donde habita el olvido">
+				<Cancion Duracion="3:32"/>
+			</Disco>
+		</autor>
+	</Discoteca>
+	<Discoteca autor="David Bustamante">
+		<autor Disco="Vivir">
+			<Disco Cancion= "Feliz">
+				<Cancion Duracion="3:34"/>
+			</Disco>
+			<Disco Cancion= "Necesito">
+				<Cancion Duracion="4:18"/>
+			</Disco>
+		</autor>
+	</Discoteca>
+</discoteca>

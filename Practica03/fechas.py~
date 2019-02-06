@@ -1,0 +1,79 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+from pytz import timezone
+from datetime import datetime
+import datetime, pytz
+import argparse
+import time
+#def main():
+
+
+dt=datetime.datetime.now()
+
+def sumar_hora(fecha_entera):
+	if len(fecha_entera)>2:
+		dt=fecha_entera[1]+" "+fecha_entera[2]
+		dt=datetime.datetime.strptime(dt,"%Y-%m-%d %H:%M:%S")
+	elif len(fecha_entera)==2:
+		dt=datetime.datetime.fromtimestamp(float(fecha_entera[1]))	
+	return dt
+
+usage = "%prog [opciones] origen destino"
+parser= argparse.ArgumentParser(description="Short sample app")
+parser.add_argument("-t" , "--timezone", action="store", dest="timezone", help="-t [lugar] para mostrar la hora de [lugar]") 
+
+args = parser.parse_args()
+
+fichero=open("fechas.txt","r")
+fmt = "%Y-%m-%d %H:%M:%S%z"/100
+print "------------", args.timezone, "-------------"
+for linea in fichero:
+	linea=linea.replace(",","")
+	fecha_hora=linea[:-1].split(" ")
+	if int(fecha_hora[0])>0 and int(fecha_hora[0])<99 :
+		if args.timezone: 			
+			if args.timezone=="madrid":
+				madrid=timezone('Europe/Madrid')					
+				dt=sumar_hora(fecha_hora)				
+				dt=madrid.localize(dt)
+				print dt.strftime(fmt)
+			elif args.timezone=="epoch":
+				if len(partido)>2:					
+					dt=fecha_hora[1]+" "+fecha_hora[2]
+					print fecha_hora[0], time.mktime(datetime.datetime.strptime(dt, "%Y-%m-%d %H:%M:%S").timetuple())
+				else:
+					print fecha_hora[0], fecha_hora[1]
+			elif args.timezone=="utc" or not args.timezone:
+				utc=pytz.utc
+				dt=sumar_hora(fecha_hora)
+				dt=utc.localize(dt)
+				print dt.strftime(fmt)
+			elif args.timezone=="londres":
+				londres=timezone('Europe/London')					
+				dt=sumar_hora(fecha_hora)				
+				dt=londres.localize(dt)
+				print dt.strftime(fmt)
+			elif args.timezone=="tokio":
+				tokio=timezone('Asia/Tokyo')					
+				dt=sumar_hora(fecha_hora)				
+				dt=tokio.localize(dt)
+				print dt.strftime(fmt)
+			elif args.timezone=="moscu":
+				moscu=timezone('Europe/Moscow')					
+				dt=sumar_hora(fecha_hora)				
+				dt=moscu.localize(dt)
+				print dt.strftime(fmt)
+			elif args.timezone=="nueva_york":
+				nueva_york=timezone('America/New_York')					
+				dt=sumar_hora(fecha_hora)				
+				dt=nueva_york.localize(dt)
+				print dt.strftime(fmt)
+
+			
+					
+
+
+
+				
+				

@@ -1,0 +1,105 @@
+Rubén Álvarez Martín -> rmartin
+
+
+
+Salida en el apartado 2.2--->rmartin@delta14 ~/st/Practica02 $ xmlpp coches.xml
+<?xml version="1.0" encoding="utf-8"?>
+<coches>
+    <Marca>
+        Opel
+        <Modelo>
+            Corsa
+            <Matricula>
+                8956BZF
+            </Matricula>
+        </Modelo>
+        <Modelo>
+            Astra
+            <Matricula>
+                5689GHY
+            </Matricula>
+        </Modelo>
+    </Marca>
+    <Marca>
+        Kia
+        <Modelo>
+            Ceed
+            <Matricula>
+                1234RTY
+            </Matricula>
+        </Modelo>
+        <Modelo>
+            Sportage
+            <Matricula>
+                4567PTY
+            </Matricula>
+        </Modelo>
+    </Marca>
+    <Marca>
+        Ford
+        <Modelo>
+            Mondeo
+            <Matricula>
+                5678TYP
+            </Matricula>
+        </Modelo>
+    </Marca>
+</coches>
+
+
+
+rmartin@delta14 ~/st/Practica02 $ xmlcheck coches.xml
+coches.xml is a well-formed xml document
+
+Salida en el apartado 2.3--->
+rmartin@delta14 ~/st/Practica02 $ xmlpp discoteca.xml
+<?xml version="1.0" encoding="utf-8"?>
+<discoteca>
+    <autor>
+        Joaquin Sabina
+        <Disco>
+            19 días y 500 noches
+            <Cancion>
+                Cerrado por derribo
+                <Duracion>
+                    4:37
+                </Duracion>
+            </Cancion>
+            <Cancion>
+                Como ce digo una "co" te digo la "o"
+                <Duracion>
+                    8:41
+                </Duracion>
+            </Cancion>
+            <Cancion>
+                Donde habita el olvido
+                <Duracion>
+                    3:32
+                </Duracion>
+            </Cancion>
+        </Disco>
+    </autor>
+    <autor>
+        David Bustamante
+        <Disco>
+            Vivir
+            <Cancion>
+                Feliz
+                <Duracion>
+                    3:34
+                </Duracion>
+            </Cancion>
+            <Cancion>
+                Necesito
+                <Duracion>
+                    4:18
+                </Duracion>
+            </Cancion>
+        </Disco>
+    </autor>
+</discoteca>
+
+
+rmartin@delta14 ~/st/Practica02 $ xmlcheck discoteca.xml
+discoteca.xml is a well-formed xml document
+

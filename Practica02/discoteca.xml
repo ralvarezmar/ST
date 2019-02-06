@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<discoteca>
+	<autor>
+		Joaquin Sabina
+		<Disco>
+			19 días y 500 noches
+			<Cancion>
+				Cerrado por derribo
+				<Duracion>
+					4:37
+				</Duracion>
+			</Cancion>
+			<Cancion>
+				Como ce digo una "co" te digo la "o"
+				<Duracion>
+					8:41
+				</Duracion>
+			</Cancion>
+			<Cancion>
+				Donde habita el olvido
+				<Duracion>
+					3:32
+				</Duracion>
+			</Cancion>
+		</Disco>
+	</autor>
+	<autor>
+		David Bustamante
+		<Disco>
+			Vivir
+			<Cancion>
+				Feliz
+				<Duracion>
+					3:34
+				</Duracion>
+			</Cancion>
+			<Cancion>
+				Necesito
+				<Duracion>
+					4:18
+				</Duracion>
+			</Cancion>
+		</Disco>
+	</autor>
+</discoteca>
+		

@@ -1,0 +1,39 @@
+#!/usr/bin/python -tt
+# -*- coding: utf-8 -*-
+
+
+import argparse
+import sys
+import os
+from os.path import basename
+import commands,sys
+import xmlpp
+
+
+def main():
+
+	usage = "%prog [opciones] origen destino"
+	parser= argparse.ArgumentParser(description="Short sample app")
+	parser.add_argument("-i" , "--input", action="store", dest="input", help="fichero a leer") 
+	parser.add_argument("-o" , "--output", action="store", dest="output", help="fichero a escribir") 
+	parser.add_argument("-m" , "--modify", action="store_true", dest="modify", help="dar formato al texto original") 
+	args = parser.parse_args()
+
+	fichero=open(args.input,"r")
+	cadena_fich=fichero.read()
+	if args.output:
+		escribir=open(args.output,"w")
+		xmlpp.pprint(cadena_fich,escribir) 
+	else:
+		xmlpp.pprint(cadena_fich)
+	if args.modify:
+		try: 
+			nuevo=open("aux.xml","w")
+			xmlpp.pprint(cadena_fich,nuevo)
+			os.remove(args.input)
+			os.rename("aux.xml",args.input)
+		except NameError:
+			print "No se puede cambiar de nombre al documento" 
+	
+if __name__ == "__main__":		
+	main()	
